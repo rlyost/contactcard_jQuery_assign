@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Rick Yost
+1 Mar 2018
+Contact Card Assignment -->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Contact Card</title>
+	<style>
+
+		form {
+			display: inline-block;
+			border-top: 3px solid black;
+			text-align: right;
+			margin: 0px 30px;
+			vertical-align: top;
+		}
+		input {
+			display: inline-block;
+		}
+		p {
+			text-align: left;
+		}
+		#wrapper {
+			width: 675px;
+			margin: 0 auto;
+			background-color: grey;
+		}
+		#doit {
+			text-align: left;
+			display: inline-block;
+		}
+		#txtbox {
+		    font-size:18pt;
+		    height:150px;
+		    width:200px;
+	    }
+	    .card {
+	    	width: 250px;
+	    	height: 150px;
+	    	margin: 20px 30px;
+	    	border: 3px solid black;
+	    	display: inline-block;
+	    	text-align: center;
+	    	vertical-align: top;
+	    }
+	    .top {
+	    	display: inline-block;
+	    }
+/*	    .bottom {
+	    	display: none;
+	    }*/
+	    .card h1 {
+	    	margin: 30px 30px;
+	    	vertical-align: top;
+	    }
+	    .card p {
+	    	text-align: center;
+	    	display: inline-block;
+	    }
+	    .container {
+	    	display: inline-block;
+	    }
+
+	</style>
+
+</head>
+<body>
+	<div id="wrapper">
+		<h1>Add User</h1>
+		<form id="user" name="User" method="post">
+			<p></p>
+			First Name:<input type="text" name="First Name" id="fname">
+			<p></p>
+			Last Name:<input type="text" name="Last Name" id="lname">
+			<p></p>
+			<p>Description:</p>
+			<input type="text" name="Description" id="txtbox">
+			<p></p>
+			<input type="button" value="Add User" name="Add User" id="doit">
+		</form>
+		<div id="container"></div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		"use strict";
+
+		$(document).ready(function() {
+			var markup;
+			var next;
+			$("#doit").click(function(){
+	            var fname = $("#fname").val();
+	            var lname = $("#lname").val();
+	            var txtbox = $("#txtbox").val();
+	            next = "<div class='card'>" + txtbox + "</div>";
+	            markup = "<div class='card'><h1>" + fname + " " + lname + "</h1><p class='clicker'>Click for description!</p></div>";
+	            
+            $("#container").append(markup);
+            $(document).on("click", ".card", function() {
+            	var temp = $("div.this").html();
+            	markup = next;
+            	$(this).replaceWith(markup);
+            	next = temp;
+
+            });
+
+   //          $(document).on("click", ".card", function() {
+			// 	if($('.top').is(":visible")) {
+			// 		$(this).replaceWith(markup2);	
+			// 	} else if($('.bottom').is(":visible")) {
+			// 		$(this).replaceWith(markup);
+			// 	}
+			// });
+			})
+        });
+
+	</script>
+</body>
+</html>
